@@ -28,7 +28,7 @@
     <textarea type="text" name="address">{{ old('address',$address) }}</textarea>
     <label for="phone_number">電話番号</label>
     <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
-    <label for=""><input type="submit" value="登録">
+    <input type="submit" value="登録">
 </form>
 <button onclick="location.href='{{ route('crms.search') }}'">郵便番号検索に戻る</button>
 @endsection
