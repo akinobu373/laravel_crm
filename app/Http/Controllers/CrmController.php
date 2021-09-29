@@ -9,22 +9,12 @@ use App\Http\Requests\CrmRequest;
 
 class CrmController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $crms = Crm::all();
         return view('crms.index', compact('crms'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $method = "GET";
@@ -40,23 +30,13 @@ class CrmController extends Controller
             $crms = json_decode($body, false);
             $results = $crms->results[0];
             $address = $results->address1 . $results->address2 . $results->address3;
-            // dd($address);
         } catch (\Throwable $th) {
-            // return back();
-            dd($th);
-            $crms = null;
-            $address = null;
+            return back();
         }
 
         return view('crms.create')->with(compact('zipcode', 'address'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(CrmRequest $request)
     {
         $crm = new Crm();
@@ -71,35 +51,16 @@ class CrmController extends Controller
         return redirect()->route('crms.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Crm $crm)
     {
         return view('crms.show', compact('crm'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Crm $crm)
     {
         return view('crms.edit', compact('crm'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Crmrequest $request, Crm $crm)
     {
         $crm->name = $request->name;
@@ -113,12 +74,6 @@ class CrmController extends Controller
         return redirect()->route('crms.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Crm $crm)
     {
         $crm->delete();

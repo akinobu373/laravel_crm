@@ -26,7 +26,7 @@ class CrmRequest extends FormRequest
         return [
             'name' => 'required|string|max:50',
             'email' => 'required|string|email:rfc',
-            'zipcode' => 'required|string|max:7',
+            'zipcode' => 'required|string|max:7|min;7',
             'address' => 'required|string',
             'phone_number' => 'required|string|max:11'
         ];

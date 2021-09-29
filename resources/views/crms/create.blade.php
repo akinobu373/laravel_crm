@@ -18,17 +18,17 @@
 @endif
 <form action="{{ route('crms.store') }}" method="POST">
     @csrf
-    <p>名前</p>
+    <label for="name">名前</label>
     <input type="text" name="name" id="name" value="{{ old('name') }}">
-    <p>メールアドレス</p>
+    <label for="email">メールアドレス</label>
     <input type="text" name="email" id="email" value="{{ old('email') }}">
-    <p>郵便番号</p>
+    <label for="zipcode">郵便番号</label>
     <input type="text" name="zipcode" id="zipcode" value="{{ old('zipcode',$zipcode) }}">
-    <p>住所</p>
+    <label for="address">住所</label>
     <textarea type="text" name="address">{{ old('address',$address) }}</textarea>
-    <p>電話番号</p>
+    <label for="phone_number">電話番号</label>
     <input type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
-    <p><input type="submit" value="登録"></p>
+    <label for=""><input type="submit" value="登録">
 </form>
 <button onclick="location.href='{{ route('crms.search') }}'">郵便番号検索に戻る</button>
 @endsection
